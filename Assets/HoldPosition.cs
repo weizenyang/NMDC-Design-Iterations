@@ -11,11 +11,13 @@ public class HoldPosition : MonoBehaviour
     public Vector3 holdPosition;
     public Quaternion holdRotation;
     public bool holdState = false;
+
+    public bool testHoldState = false;
     // Start is called before the first frame update
     void Start()
     {
-        initPosition = transform.position;
-        initRotation = transform.rotation;
+        initPosition = transform.localPosition;
+        initRotation = transform.localRotation;
     }
 
     // Update is called once per frame
@@ -26,10 +28,6 @@ public class HoldPosition : MonoBehaviour
             transform.position = holdPosition;
             transform.rotation = holdRotation;
 
-        } else
-        {
-            transform.position = initPosition;
-            transform.rotation = initRotation;
         }
     }
 
@@ -37,6 +35,8 @@ public class HoldPosition : MonoBehaviour
     {
         Debug.Log(p);
     }
+
+
 
     public void holdStart()
     {
@@ -49,5 +49,8 @@ public class HoldPosition : MonoBehaviour
     public void holdStop()
     {
         holdState = false;
+        transform.localPosition = initPosition;
+        transform.localRotation = initRotation;
+
     }
 }
