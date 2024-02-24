@@ -3,7 +3,32 @@ guid: ed2eb3070e5ae4a46a11c3934eda335f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUKAAB-dark
+    second: {fileID: 2100000, guid: d39265191458c024ba6a94205e867d4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUKAAB-gold
+    second: {fileID: 2100000, guid: 21763d42c0f0e4e49aecf90b83b4cce3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUKAAB-gold2
+    second: {fileID: 2100000, guid: 79d465d28b2c6b4469e43233afaa9bf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUKAAB-roof
+    second: {fileID: 2100000, guid: edeb5ddbc27f7034caa0b77ea7474ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUKAAB-triangle
+    second: {fileID: 2100000, guid: c69c647c3273cfa4fbc70c3591f78688, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,6 +65,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

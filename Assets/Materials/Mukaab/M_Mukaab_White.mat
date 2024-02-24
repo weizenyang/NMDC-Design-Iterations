@@ -10,7 +10,7 @@ Material:
   m_Name: M_Mukaab_White
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: ba237d96ed6b9a746af882e444143fd9, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 20
   m_ValidKeywords:
   - _NORMALMAP
   m_InvalidKeywords:
@@ -23,9 +23,9 @@ Material:
   - _NORMAL_MAP
   - _SPECULAR_HIGHLIGHTS
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2012
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -53,13 +53,18 @@ Material:
     m_Floats:
     - _AlbedoAlphaMode: 1
     - _BumpScale: 0.5
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EnableNormalMap: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _NormalMapScale: 0.5
     - _Parallax: 0.005
+    - _QueueOffset: 12
     - _Smoothness: 0.539
+    - _Surface: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.79607844, g: 0.7567522, b: 0.6718902, a: 1}
     - _Color: {r: 0.79607844, g: 0.7567522, b: 0.67189014, a: 1}
