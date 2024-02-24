@@ -48,6 +48,7 @@ public class HoldPosition : MonoBehaviour
 
     public void holdStop()
     {
+        Debug.Log("Stopped Holding");
         holdState = false;
         transform.localPosition = initPosition;
         transform.localRotation = initRotation;

@@ -16,32 +16,32 @@ public class TransparentOnTouch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderers = GetComponentsInChildren<Renderer>();
+        //renderers = GetComponentsInChildren<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        foreach (Renderer renderer in renderers)
-        {
-            Material[] materials = renderer.materials; // Get all materials of the renderer
+        //foreach (Renderer renderer in renderers)
+        //{
+        //    //Material[] materials = renderer.materials; // Get all materials of the renderer
 
-            for (int i = 0; i < materials.Length; i++)
-            {
-                Color materialColor = materials[i].color;
+        //    for (int i = 0; i < materials.Length; i++)
+        //    {
+        //        Color materialColor = materials[i].color;
                 
-                if(translucent)
-                {
-                    translucency = 0.1f;
-                } else
-                {
-                    translucency = 1f;
-                }
-                //materialColor.a = Mathf.Lerp(materialColor.a, translucency, fadeSpeed * Time.deltaTime);
-                //materials[i].color = materialColor;
-            }
-        }
+        //        if(translucent)
+        //        {
+        //            translucency = 0.1f;
+        //        } else
+        //        {
+        //            translucency = 1f;
+        //        }
+        //        //materialColor.a = Mathf.Lerp(materialColor.a, translucency, fadeSpeed * Time.deltaTime);
+        //        //materials[i].color = materialColor;
+        //    }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,12 +52,19 @@ public class TransparentOnTouch : MonoBehaviour
             if (GetComponent<MeshRenderer>() != null)
             {
 
-                GetComponent<MeshRenderer>().enabled = false;
+                //GetComponent<MeshRenderer>().enabled = false;
             }
             else
             {
-                GetComponentInChildren<MeshRenderer>().enabled = false;
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
             }
+
+        Debug.Log(other.gameObject);
+
+        if (other.gameObject.GetComponent<GrowSphere>() != null)
+        {
+            other.gameObject.GetComponent<GrowSphere>().startGrowFunc();
+        }
         //}
         
         
@@ -69,14 +76,18 @@ public class TransparentOnTouch : MonoBehaviour
             //translucent = false;
             if (GetComponent<MeshRenderer>() != null)
             {
-                GetComponent<MeshRenderer>().enabled = true;
+                //GetComponent<MeshRenderer>().enabled = true;
 
             }
             else
             {
-                GetComponentInChildren<MeshRenderer>().enabled = true;
+                //GetComponentInChildren<MeshRenderer>().enabled = true;
             }
         //}
+        if (other.gameObject.GetComponent<GrowSphere>() != null)
+        {
+            other.gameObject.GetComponent<GrowSphere>().stopGrowFunc();
+        }
 
 
     }
