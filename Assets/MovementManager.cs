@@ -15,6 +15,8 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private GameObject targetObject;
     [SerializeField] private InputActionReference activate1;
     [SerializeField] private InputActionReference activate2;
+    [SerializeField] private bool allowScale = true;
+    [SerializeField] private bool allowMove = true;
 
     Vector3 initPosition = Vector3.zero;
     Vector3 currentPosition;
@@ -103,9 +105,15 @@ public class MovementManager : MonoBehaviour
         if (transforming)
         {
             currentPosition = rightController.transform.position;
-            targetObject.transform.position += currentPosition - initPosition;
-            scaleFactor += (currentPosition.y - initPosition.y) * 1f;
+            if (allowMove)
+            {
+                targetObject.transform.position += currentPosition - initPosition;
+            }
 
+            if (allowScale)
+            {
+                scaleFactor += (currentPosition.y - initPosition.y) * 1f;
+            }
             
             for (int i=0; i<list.Count; i++)
             {

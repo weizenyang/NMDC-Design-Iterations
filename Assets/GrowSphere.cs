@@ -26,12 +26,12 @@ public class GrowSphere : MonoBehaviour
             if (startGrow)
             {
 
-                scale += (maxScale - scale) * 0.2f;
+                scale += (maxScale - scale) * 0.05f;
                 targetGo.transform.localScale = new Vector3(scale, scale, scale);
             }
             else
             {
-                scale += (0f - scale) * 0.2f;
+                scale += (0f - scale) * 0.05f;
                 targetGo.transform.localScale = new Vector3(scale, scale, scale);
             }
         }

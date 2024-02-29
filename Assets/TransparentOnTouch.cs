@@ -10,6 +10,7 @@ public class TransparentOnTouch : MonoBehaviour
     private Renderer[] renderers;
 
     private bool translucent = false;
+    public bool allowTriggerExit = false;
     float translucency = 1f;
     public float targetTranslucency = 0.4f;
 
@@ -52,18 +53,18 @@ public class TransparentOnTouch : MonoBehaviour
             if (GetComponent<MeshRenderer>() != null)
             {
 
-                //GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<MeshRenderer>().enabled = false;
             }
             else
             {
-                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                GetComponentInChildren<MeshRenderer>().enabled = false;
             }
 
         Debug.Log(other.gameObject);
 
         if (other.gameObject.GetComponent<GrowSphere>() != null)
         {
-            other.gameObject.GetComponent<GrowSphere>().startGrowFunc();
+            //other.gameObject.GetComponent<GrowSphere>().startGrowFunc();
         }
         //}
         
@@ -76,17 +77,21 @@ public class TransparentOnTouch : MonoBehaviour
             //translucent = false;
             if (GetComponent<MeshRenderer>() != null)
             {
-                //GetComponent<MeshRenderer>().enabled = true;
+                GetComponent<MeshRenderer>().enabled = true;
 
             }
             else
             {
-                //GetComponentInChildren<MeshRenderer>().enabled = true;
+                GetComponentInChildren<MeshRenderer>().enabled = true;
             }
         //}
         if (other.gameObject.GetComponent<GrowSphere>() != null)
         {
-            other.gameObject.GetComponent<GrowSphere>().stopGrowFunc();
+            if (allowTriggerExit)
+            {
+                //other.gameObject.GetComponent<GrowSphere>().stopGrowFunc();
+            }
+            
         }
 
 
