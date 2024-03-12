@@ -15,6 +15,7 @@ public class MovementManager1 : MonoBehaviour
     [SerializeField] private XRRayInteractor rayInteractor2;
     [SerializeField] private GameObject rightController;
     [SerializeField] private GameObject targetObject;
+    [SerializeField] private GameObject targetPlinth;
     [SerializeField] private InputActionReference activate1;
     [SerializeField] private InputActionReference activate2;
     private Vector3 initUIPosition;
@@ -38,9 +39,13 @@ public class MovementManager1 : MonoBehaviour
     List<GameObject> list = new List<GameObject>();
     List<Vector3> initScales = new List<Vector3>();
 
+    //Touch Controls
+    GameObject rotateControls;
+
+
     private void Start()
     {
-        initYPosition = targetObject.transform.position.y;
+        initYPosition = targetObject.transform.localPosition.y;
         initUIPosition = transform.localPosition;
         list = new List<GameObject>(GameObject.FindGameObjectsWithTag("Transformable"));
         foreach (GameObject go in list)
@@ -97,6 +102,8 @@ public class MovementManager1 : MonoBehaviour
     {
         Vector3 point = new Vector3(0, 0, 0);
         //bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+
+        
 
 
         
@@ -160,6 +167,7 @@ public class MovementManager1 : MonoBehaviour
             {
                 Vector3 tempPos = (currentPosition - initPosition);
                 targetObject.transform.position += currentPosition - initPosition;
+                
 
                 transform.localPosition = initUIPosition + new Vector3(Mathf.Clamp(tempPos.z * 100f, -0.5f, 0.5f), Mathf.Clamp(tempPos.x * 100f, -0.5f, 0.5f), 0f);
             }
@@ -173,8 +181,13 @@ public class MovementManager1 : MonoBehaviour
                 for (int i = 0; i < list.Count; i++)
                 {
                     GameObject transformable = list[i];
-                    Vector3 currentScale = Vector3.Scale(initScales[i], new Vector3(scaleFactor, scaleFactor, scaleFactor));
-                    transformable.transform.localScale = currentScale;
+                    //Vector3 currentScale = Vector3.Scale(initScales[i], new Vector3(scaleFactor, scaleFactor, scaleFactor));
+                    Vector3 currentScale = transformable.transform.localScale * scaleMagnitude;
+                    Vector3 tempLocalScale = transformable.transform.localScale;
+                    tempLocalScale -= currentScale;
+                    transformable.transform.localScale -= currentScale;
+                    
+
                 }
                 transform.localPosition = initUIPosition + new Vector3(Mathf.Clamp(-scaleMagnitude * 100f, -0.45f, 0.45f), Mathf.Clamp(-scaleMagnitude * 100f, -0.45f, 0.45f), 0f);
 
@@ -185,8 +198,10 @@ public class MovementManager1 : MonoBehaviour
                 Vector3 buttonForward = transform.forward;
                 rotateMagnitude = MagnitudeBetweenProjectedPoints(initPosition, currentPosition, transform.position, buttonForward);
                 targetObject.transform.localEulerAngles += new Vector3(0, rotateMagnitude * 1800f, 0);
+                targetPlinth.transform.localEulerAngles += new Vector3(0, rotateMagnitude * 1800f, 0);
                 transform.localPosition = initUIPosition + new Vector3(0f, Mathf.Clamp(rotateMagnitude * 300f, -0.45f, 0.45f), 0f);
-
+                Vector3 tempLocalRotation = targetObject.transform.localEulerAngles;
+                
 
             }
 
@@ -194,13 +209,12 @@ public class MovementManager1 : MonoBehaviour
 
             
             //targetObject.transform.position.Scale(new Vector3(1, 1, 0));
-            targetObject.transform.position = new Vector3(targetObject.transform.position.x, initYPosition, targetObject.transform.position.z);
+            targetObject.transform.localPosition = new Vector3(targetObject.transform.localPosition.x, initYPosition, targetObject.transform.localPosition.z);
             initPosition = rightController.transform.position;
         } else
         {
             transform.localPosition = initUIPosition;
-            
-            
+
         }
         
 
