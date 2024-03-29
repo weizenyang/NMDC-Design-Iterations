@@ -5,6 +5,9 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     public GameObject go;
+    public Vector3 offset;
+    public bool position = true;
+    public bool rotation = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +19,18 @@ public class Follow : MonoBehaviour
     {
         if(go != null)
         {
-            transform.position = go.transform.position;
-            transform.rotation = go.transform.rotation;
+            
+            if(position)
+            {
+                transform.position = go.transform.position;
+                
+            }
+
+            if (rotation)
+            {
+                transform.rotation = go.transform.rotation;
+            }
+            
         }
     }
 }

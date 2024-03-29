@@ -38,7 +38,7 @@ public class WristRotation : MonoBehaviour
             deltaEulerAngles.z += 360f;
         }
 
-        Debug.Log("Wrist Rotation" + deltaEulerAngles.z);
+        //Debug.Log("Wrist Rotation" + deltaEulerAngles.z);
 
         // Update previous angles for next frame
         prevEulerAngles = currentEulerAngles;

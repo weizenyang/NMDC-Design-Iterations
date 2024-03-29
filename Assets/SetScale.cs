@@ -22,15 +22,15 @@ public class SetScale : MonoBehaviour
     {
 
     }
-    public void OnScrollValueChange(Vector2 value)
-    {
-        Debug.Log("Set Scale: " + value);   
-        currentScaleFactor = (value.x * 0.02f);
-        manipulating = true;
-        Debug.Log("Manipulating " + manipulating);
-        currentScaleFactor += (targetScaleFactor - currentScaleFactor) * 0.05f;
-        transform.localScale = new Vector3(currentScaleFactor, currentScaleFactor, currentScaleFactor);
-    }
+    //public void OnScrollValueChange(Vector2 value)
+    //{
+    //    Debug.Log("Set Scale: " + value);   
+    //    currentScaleFactor = (value.x * 0.02f);
+    //    manipulating = true;
+    //    Debug.Log("Manipulating " + manipulating);
+    //    currentScaleFactor += (targetScaleFactor - currentScaleFactor) * 0.05f;
+    //    transform.localScale = new Vector3(currentScaleFactor, currentScaleFactor, currentScaleFactor);
+    //}
 
     public void externalSetScale(float scale)
     {

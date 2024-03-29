@@ -31,6 +31,7 @@ public class MovementManager1 : MonoBehaviour
 
     Vector3 initPosition = Vector3.zero;
     Vector3 currentPosition;
+    public GameObject userPosition;
     bool triggerDown = false;
     bool transforming = false;
     float initYPosition = 0f;
@@ -167,9 +168,9 @@ public class MovementManager1 : MonoBehaviour
             {
                 Vector3 tempPos = (currentPosition - initPosition);
                 targetObject.transform.position += currentPosition - initPosition;
-                
 
-                transform.localPosition = initUIPosition + new Vector3(Mathf.Clamp(tempPos.z * 100f, -0.5f, 0.5f), Mathf.Clamp(tempPos.x * 100f, -0.5f, 0.5f), 0f);
+                Vector3 relativeToUser = tempPos - userPosition.transform.position;
+                transform.localPosition = initUIPosition + new Vector3(Mathf.Clamp(relativeToUser.z * 100f, -0.5f, 0.5f), Mathf.Clamp(relativeToUser.x * 100f, -0.5f, 0.5f), 0f);
             }
 
             if (allowScale)
@@ -318,5 +319,6 @@ public class MovementManager1 : MonoBehaviour
 
         return vector3;
     }
+
 
 }

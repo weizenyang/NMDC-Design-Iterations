@@ -38,7 +38,7 @@ public class HoldPosition : MonoBehaviour
             if (go != null)
             {
                 float magnitude = Vector3.Magnitude(transform.position - go.transform.position);
-                Debug.Log("Magnitude" + magnitude);
+                //Debug.Log("Magnitude" + magnitude);
                 transform.position -= Vector3.ClampMagnitude((transform.position - go.transform.position) * 0.5f, 0.01f);
                 
             }
