@@ -6,8 +6,8 @@ public class Follow : MonoBehaviour
 {
     public GameObject go;
     public Vector3 offset;
-    public bool position = true;
-    public bool rotation = true;
+    public bool position;
+    public bool rotation;
     // Start is called before the first frame update
     void Start()
     {

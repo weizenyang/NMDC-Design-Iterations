@@ -40,13 +40,14 @@ public class MoveBy : MonoBehaviour
         foreach (GameObject go in hands)
         {
             transform.localPosition = initPosition + position;
-        }
-
 
             foreach (Image image in images)
             {
-                image.color = new Color(255,255,255,0);
+                image.color = new Color(255, 255, 255, 0);
             }
+        }
+
+
 
     }
 

@@ -9,13 +9,18 @@ public class GrowSphere : MonoBehaviour
     public GameObject targetGo;
     private float scale = 0f;
 
+    [SerializeField] private GameObject targetObject;
+    [SerializeField] private float distanceToTrigger;
+    [SerializeField] private GrowSphere growSphere;
+    public Vector3 updatedPosition = Vector3.zero;  
+
     [SerializeField]
     private float maxScale = 0.4f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,9 +36,21 @@ public class GrowSphere : MonoBehaviour
             }
             else
             {
-                scale += (0f - scale) * 0.05f;
+                scale += (0.1f - scale) * 0.05f;
                 targetGo.transform.localScale = new Vector3(scale, scale, scale);
             }
+        }
+
+        if (Vector3.Distance(targetObject.transform.position, transform.position) < distanceToTrigger)
+        {
+            growSphere.startGrowFunc();
+            targetGo.transform.localPosition = new Vector3(0f, 0f, 0f);
+            updatedPosition = transform.position;
+        }
+        else
+        {
+            growSphere.stopGrowFunc();
+            targetGo.transform.position = updatedPosition;
         }
     }
 
@@ -46,6 +63,8 @@ public class GrowSphere : MonoBehaviour
     {
         startGrow = false;
     }
+
+
 
     private void OnTriggerEnter(Collider c)
     {

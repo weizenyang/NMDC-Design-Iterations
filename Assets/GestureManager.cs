@@ -17,6 +17,7 @@ public class GestureManager : MonoBehaviour
     private Vector3 initLeftHandPosition;
     private Vector3 initRightHandPosition;
     private float layer;
+    private int layerCount;
     Vector3 delta;
 
     public GameObject layerPanel;
@@ -33,12 +34,13 @@ public class GestureManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        layerCount = setLayer.getLayerCount();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         Debug.Log("Gesture: " + leftGesture + " " + rightGesture);
         if (leftGesture == "Stretch" && rightGesture == "Stretch")
         {
@@ -159,9 +161,10 @@ public class GestureManager : MonoBehaviour
 
             Vector3 AB = player.transform.position - initRightHandPosition;
             Vector3 BC = player.transform.position - rightHand.transform.position;
-            Vector3 AC = Vector3.Scale(BC - AB, new Vector3(10f, 0f, 10f));
+            Vector3 AC = Vector3.Scale(BC - AB, new Vector3(4f, 0f, 4f));
 
-            layer -= AC.z * 3f;
+            layer -= (AC.x + AC.z) * 3f;
+            layer = Mathf.Clamp(layer, 0, layerCount);
 
             Debug.Log("Gesture Layer: " + AC + " " + layer);
 
@@ -182,9 +185,10 @@ public class GestureManager : MonoBehaviour
 
             Vector3 AB = player.transform.position - initLeftHandPosition;
             Vector3 BC = player.transform.position - leftHand.transform.position;
-            Vector3 AC = Vector3.Scale(BC - AB, new Vector3(5f, 0f, 5f));
+            Vector3 AC = Vector3.Scale(BC - AB, new Vector3(4f, 0f, 4f));
 
-            layer -= AC.z * 3f;
+            layer -= (AC.x + AC.z) * 3f;
+            layer = Mathf.Clamp(layer, 0, layerCount);
 
             Debug.Log("Gesture Layer: " + AC);
 
@@ -205,6 +209,7 @@ public class GestureManager : MonoBehaviour
             {
                 delta -= delta * 0.1f;
             }
+            layer = Mathf.Clamp(layer, 0, layerCount - 1);
             layer = (int)layer;
             //Remove decimal once gesture is not detected
             

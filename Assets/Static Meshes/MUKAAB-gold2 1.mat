@@ -27,6 +27,7 @@ Material:
   m_ValidKeywords:
   - _CLIPPING_SPHERE
   - _DIRECTIONAL_LIGHT
+  - _DISABLE_ALBEDO_MAP
   - _SPECULAR_HIGHLIGHTS
   - _USE_WORLD_SCALE
   m_InvalidKeywords: []
@@ -35,6 +36,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
+    DisableBatching: False
     RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -180,7 +182,7 @@ Material:
     - _IridescenceAngle: -0.78
     - _IridescenceIntensity: 0.5
     - _IridescenceThreshold: 0.05
-    - _Metallic: 0
+    - _Metallic: 0.649
     - _MipmapBias: -2
     - _Mode: 0
     - _NPR: 0
@@ -232,7 +234,7 @@ Material:
     - _BlurBackgroundRect: {r: 0, g: 0, b: 1, a: 1}
     - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
     - _ClippingBorderColor: {r: 1, g: 0.19999996, b: 0, a: 1}
-    - _Color: {r: 0.7679915, g: 0.4681713, b: 0.14982617, a: 1}
+    - _Color: {r: 0.990566, g: 0.6403518, b: 0.08877712, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}

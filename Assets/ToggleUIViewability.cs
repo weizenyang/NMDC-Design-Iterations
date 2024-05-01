@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ToggleUIViewability : MonoBehaviour
 {
@@ -38,8 +40,29 @@ public class ToggleUIViewability : MonoBehaviour
         }
         else if (transition && tState == transitionState.Backward)
         {
+
             transitionSlider -= 0.1f;
         }
+
+        //Set UI color
+        Color c = this.gameObject.GetComponent<Image>().color;
+        this.gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, EaseInOut(transitionSlider));
+
+        
+        Image[] childrenComponents = this.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image child in childrenComponents)
+        {
+            Color ct = child.color;
+            child.color = new Color(ct.r, ct.g, ct.b, EaseInOut(transitionSlider));
+        }
+
+        TMP_Text[] childrenText = this.gameObject.GetComponentsInChildren<TMP_Text>();
+        foreach (TMP_Text child in childrenText)
+        {
+            Color ct = child.color;
+            child.color = new Color(ct.r, ct.g, ct.b, EaseInOut(transitionSlider));
+        }
+
 
         Debug.Log("transition slider " + transitionSlider);
 
