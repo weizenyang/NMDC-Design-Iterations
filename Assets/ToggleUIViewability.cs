@@ -10,6 +10,7 @@ public class ToggleUIViewability : MonoBehaviour
     Vector3 initPosition;
     public bool transition;
     public float timeout;
+    [SerializeField] private bool StartVisibility;
     float transitionSlider = 0f;
 
     enum transitionState
@@ -26,9 +27,8 @@ public class ToggleUIViewability : MonoBehaviour
     {
         initPosition = gameObject.transform.localPosition;
         transform.localPosition = initPosition - new Vector3(0f, 0.1f, 0f);
-        gameObject.SetActive(false);
+        gameObject.SetActive(StartVisibility);
         
-
     }
 
     // Update is called once per frame
@@ -45,18 +45,18 @@ public class ToggleUIViewability : MonoBehaviour
         }
 
         //Set UI color
-        Color c = this.gameObject.GetComponent<Image>().color;
-        this.gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, EaseInOut(transitionSlider));
+        Color c = gameObject.GetComponent<Image>().color;
+        gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, EaseInOut(transitionSlider));
 
         
-        Image[] childrenComponents = this.gameObject.GetComponentsInChildren<Image>();
+        Image[] childrenComponents = gameObject.GetComponentsInChildren<Image>();
         foreach (Image child in childrenComponents)
         {
             Color ct = child.color;
             child.color = new Color(ct.r, ct.g, ct.b, EaseInOut(transitionSlider));
         }
 
-        TMP_Text[] childrenText = this.gameObject.GetComponentsInChildren<TMP_Text>();
+        TMP_Text[] childrenText = gameObject.GetComponentsInChildren<TMP_Text>();
         foreach (TMP_Text child in childrenText)
         {
             Color ct = child.color;
@@ -115,15 +115,40 @@ public class ToggleUIViewability : MonoBehaviour
 
     }
 
+    public void toggleVisibility()
+    {
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+            tState = transitionState.Forward;
+        } else
+        {
+            if (waitCoroutine != null)
+            {
+                StopCoroutine(waitCoroutine);
+                waitCoroutine = null;
+            }
+            waitCoroutine = StartCoroutine(WaitAndHide(timeout));
+        }
+    }
+
     IEnumerator WaitAndHide(float time)
     {
 
         Debug.Log("Wait and print");
         yield return new WaitForSeconds(time / 2);
         tState = transitionState.Backward;
-        
 
-        
+    }
+
+    public void setPosition(Vector3 position)
+    {
+        gameObject.GetComponentInParent<Follow>().setPosition(position, timeout);
+    }
+
+    public void setRotation(Vector3 rotation)
+    {
+        gameObject.GetComponentInParent<Follow>().setRotation(rotation, timeout);
     }
 
     public static float EaseInOut(float x)

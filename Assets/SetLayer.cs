@@ -5,7 +5,8 @@ using UnityEngine;
 public class SetLayer : MonoBehaviour
 {
     GameObject[] child;
-    public GameObject layerPanel;
+    public GameObject layerPanelLeft;
+    public GameObject layerPanelRight;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,7 +34,8 @@ public class SetLayer : MonoBehaviour
             child.SetActive(false);
         }
         transform.GetChild(layerIndex).gameObject.SetActive(true);
-        layerPanel.GetComponent<UpdateText>().updateText((layerIndex + 1).ToString());
+        layerPanelLeft.GetComponent<UpdateText>().updateText((layerIndex + 1).ToString());
+        layerPanelRight.GetComponent<UpdateText>().updateText((layerIndex + 1).ToString());
     }
 
     public int getLayerCount()

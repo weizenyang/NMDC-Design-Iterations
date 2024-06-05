@@ -22,7 +22,7 @@ MonoBehaviour:
     m_Targets:
     - m_ShapeType: 0
       m_Desired: 0
-      m_Tolerance: 0.3
+      m_Tolerance: 0.861
   - m_FingerID: 2
     m_Targets:
     - m_ShapeType: 0
